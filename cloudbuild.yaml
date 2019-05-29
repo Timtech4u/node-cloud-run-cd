@@ -10,7 +10,7 @@ steps:
   args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1']
   # Create a Cloud Bucket - Test
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['mb', '-l', 'us-east1', 'gs://mybucket']
+  args: ['mb', '-l', 'us-east1', 'gs://newbucket']
 images:
 - gcr.io/projectz-239507/app
 timeout: 1200s
