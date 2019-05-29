@@ -9,8 +9,8 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1']
   # Create a Cloud Bucket - Test
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['mb', '-l', 'us-east1', 'gs://newtitanbucket']
+# - name: 'gcr.io/cloud-builders/gsutil'
+#   args: ['mb', '-l', 'us-east1', 'gs://newtitanbucket']
   # Create User DB
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['sql', 'databases', 'create', 'newdatabase', '--instance', 'autotitan']
