@@ -8,6 +8,9 @@ steps:
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1']
+  # Create a Cloud Bucket - Test
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['mb', '-l', 'us-east1', 'gs://mybucket']
 images:
 - gcr.io/projectz-239507/app
 timeout: 1200s
