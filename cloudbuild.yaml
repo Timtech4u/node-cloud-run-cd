@@ -5,17 +5,15 @@ steps:
   # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/projectz-239507/app']
+  # create database
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['sql', 'databases', 'create', 'mydb', '--instance', 'ddd']
+  # create cloud bucket
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['mb', '-l', 'us-central1', 'gs://mybucket']
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1']
-  # Create a Cloud Bucket - Test
-# - name: 'gcr.io/cloud-builders/gsutil'
-#   args: ['mb', '-l', 'us-east1', 'gs://newtitanbucket']
-  # Create User DB
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['sql', 'databases', 'create', 'newdatabase', '--instance', 'autotitan']
+  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1', '--allow-unauthenticated', '--update-env-vars', 'BUCKET=mybucket, DATABASE=mydb']
 images:
 - gcr.io/projectz-239507/app
 timeout: 1200s
-
-# Remember to activate permissions on Service Account
