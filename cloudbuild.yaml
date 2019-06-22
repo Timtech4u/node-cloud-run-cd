@@ -1,10 +1,10 @@
 steps:
   # build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/projectz-239507/app', '.']
+  args: ['build', '-t', 'gcr.io/my-bitnami-hosting/app', '.']
   # push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/projectz-239507/app']
+  args: ['push', 'gcr.io/my-bitnami-hosting/app']
   # create database
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['sql', 'databases', 'create', 'mydb', '--instance', 'ddd']
@@ -13,7 +13,7 @@ steps:
   args: ['mb', '-l', 'us-central1', 'gs://mybucket']
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/projectz-239507/app', '--region', 'us-central1', '--allow-unauthenticated', '--update-env-vars', 'BUCKET=mybucket, DATABASE=mydb']
+  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/my-bitnami-hosting/app', '--region', 'us-central1', '--allow-unauthenticated', '--update-env-vars', 'BUCKET=mybucket, DATABASE=mydb']
 images:
-- gcr.io/projectz-239507/app
+- gcr.io/my-bitnami-hosting/app
 timeout: 1200s
