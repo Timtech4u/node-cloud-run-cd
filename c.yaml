@@ -2,14 +2,15 @@ steps:
 - name: 'ubuntu'
   volumes:
   - name: 'vol'
-    path: $(pwd)
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-        echo "Hello, world!" > vol
-- name: 'gcr.io/cloud-builders/ubuntu'
+    path: '/persistent_volume'
+  args: ['mkdir', '/persistent_volume']
+- name: 'ubuntu'
   volumes:
-  - name: 'vol1'
-    path: '/workspace'
-  args: ['ls', 'vol1']
+  - name: 'vol'
+    path: '/persistent_volume'
+  args: ['cp', '-a', '*', '/persistent_volume']
+- name: 'ubuntu'
+  volumes:
+  - name: 'vol'
+    path: '/persistent_volume'
+  args: ['ls', '/persistent_volume']
