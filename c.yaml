@@ -1,4 +1,15 @@
 steps:
-  # LS
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["ls"]
+- name: 'ubuntu'
+  volumes:
+  - name: 'vol'
+    path: '/workspace'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+        echo "Hello, world!" >$(pwd)
+- name: 'gcr.io/cloud-builders/ubuntu'
+  volumes:
+  - name: 'vol1'
+    path: '/workspace'
+  args: ['ls'. 'vol1']
