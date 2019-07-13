@@ -3,11 +3,6 @@ steps:
   volumes:
   - name: 'vol'
     path: '/persistent_volume'
-  args: ['mkdir', '/persistent_volume']
-- name: 'ubuntu'
-  volumes:
-  - name: 'vol'
-    path: '/persistent_volume'
   args: ['cp', '-a', '*', '/persistent_volume']
 - name: 'ubuntu'
   volumes:
