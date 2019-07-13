@@ -2,12 +2,12 @@ steps:
 - name: 'ubuntu'
   volumes:
   - name: 'vol'
-    path: '/workspace'
+    path: $(pwd)
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-        echo "Hello, world!" >$(pwd)
+        echo "Hello, world!" > vol
 - name: 'gcr.io/cloud-builders/ubuntu'
   volumes:
   - name: 'vol1'
