@@ -12,4 +12,4 @@ steps:
   volumes:
   - name: 'vol1'
     path: '/workspace'
-  args: ['ls'. 'vol1']
+  args: ['ls', 'vol1']
