@@ -1,4 +1,4 @@
 steps:
   # LS
 - name: "gcr.io/cloud-builders/docker"
-  args: ["run", "-v", "/workspace:/home/app", "--rm", "gcr.io/fullstackgcp/gradle", "/bin/bash", "-c", "'ls'"]
+  args: ["run", "--rm", "gcr.io/fullstackgcp/gradle", "/bin/bash", "-c", "'ls home'"]
